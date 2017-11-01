@@ -21,7 +21,7 @@ describe('Point of sale', function () {
 
     describe('Insert point with repeated document', function () {
         it('should not work', function () {
-            result = PointOfSale.addPoint(fixtures.SimplePointOfSale);
+            result = PointOfSale.addPoint(fixtures.ProblematicPointOfSale);
             result.error.should.eql('ID or Document already in use');
         });
     })
@@ -39,6 +39,7 @@ describe('Point of sale', function () {
         it('should return points of sale', function () {
             pointsOfSale = PointOfSale.findPoint(fixtures.UserPoint.latitude, fixtures.UserPoint.longitude);
             pointsOfSale.length.should.equal(1);
+            pointsOfSale.forEach(p => p.should.eql(fixtures.SimplePointOfSale));
         });
     })
 })
